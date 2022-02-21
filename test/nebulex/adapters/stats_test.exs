@@ -157,7 +157,7 @@ defmodule Nebulex.Adapters.StatsTest do
   describe "(replicated) stats/0" do
     alias Cache.L2, as: Replicated
 
-    setup_with_cache(Replicated, [stats: true] ++ @config)
+    setup_with_cache(Replicated, stats: true)
 
     test "hits and misses" do
       :ok = Replicated.put_all!(a: 1, b: 2)
@@ -174,7 +174,7 @@ defmodule Nebulex.Adapters.StatsTest do
   describe "(partitioned) stats/0" do
     alias Cache.L3, as: Partitioned
 
-    setup_with_cache(Partitioned, [stats: true] ++ @config)
+    setup_with_cache(Partitioned, stats: true)
 
     test "hits and misses" do
       :ok = Partitioned.put_all!(a: 1, b: 2)
@@ -215,7 +215,7 @@ defmodule Nebulex.Adapters.StatsTest do
       {:error, {%ArgumentError{message: msg}, _}} =
         Cache.start_link(stats: 123, levels: [{Cache.L1, []}])
 
-      assert msg == "expected stats: to be boolean, got: 123"
+      assert msg == "expected :stats to be a boolean, got: 123"
     end
 
     test "L1: invalid stats option" do
@@ -224,7 +224,7 @@ defmodule Nebulex.Adapters.StatsTest do
       {:error, {:shutdown, {_, _, {:shutdown, {_, Cache.L1, {error, _}}}}}} =
         Cache.start_link(stats: true, levels: [{Cache.L1, [stats: 123]}])
 
-      assert error == %ArgumentError{message: "expected stats: to be boolean, got: 123"}
+      assert error == %ArgumentError{message: "expected :stats to be a boolean, got: 123"}
     end
 
     test "L2: invalid stats option" do
@@ -233,7 +233,7 @@ defmodule Nebulex.Adapters.StatsTest do
       {:error, {:shutdown, {_, _, {:shutdown, {_, Cache.L2, {error, _}}}}}} =
         Cache.start_link(stats: true, levels: [{Cache.L1, []}, {Cache.L2, [stats: 123]}])
 
-      assert error == %ArgumentError{message: "expected stats: to be boolean, got: 123"}
+      assert error == %ArgumentError{message: "expected :stats to be a boolean, got: 123"}
     end
 
     test "L3: invalid stats option" do
@@ -245,7 +245,7 @@ defmodule Nebulex.Adapters.StatsTest do
           levels: [{Cache.L1, []}, {Cache.L2, []}, {Cache.L3, [stats: 123]}]
         )
 
-      assert error == %ArgumentError{message: "expected stats: to be boolean, got: 123"}
+      assert error == %ArgumentError{message: "expected :stats to be a boolean, got: 123"}
     end
   end
 
