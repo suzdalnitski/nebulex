@@ -124,6 +124,7 @@ defmodule Nebulex.Adapter.Transaction do
           true ->
             try do
               _ = Process.put({pid, self()}, %{keys: keys, nodes: nodes})
+
               {:ok, fun.()}
             after
               _ = Process.delete({pid, self()})

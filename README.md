@@ -47,16 +47,16 @@ Partitioned | [Nebulex.Adapters.Partitioned][pa] | Built-In
 Replicated | [Nebulex.Adapters.Replicated][ra] | Built-In
 Multilevel | [Nebulex.Adapters.Multilevel][ma] | Built-In
 Nil (special adapter that disables the cache) | [Nebulex.Adapters.Nil][nil] | Built-In
-Cachex | Nebulex.Adapters.Cachex | [nebulex_adapters_cachex][nbx_cachex]
 Redis | NebulexRedisAdapter | [nebulex_redis_adapter][nbx_redis]
+Cachex | Nebulex.Adapters.Cachex | [nebulex_adapters_cachex][nbx_cachex]
 
 [la]: http://hexdocs.pm/nebulex/Nebulex.Adapters.Local.html
 [pa]: http://hexdocs.pm/nebulex/Nebulex.Adapters.Partitioned.html
 [ra]: http://hexdocs.pm/nebulex/Nebulex.Adapters.Replicated.html
 [ma]: http://hexdocs.pm/nebulex/Nebulex.Adapters.Multilevel.html
 [nil]: http://hexdocs.pm/nebulex/Nebulex.Adapters.Nil.html
-[nbx_cachex]: https://github.com/cabol/nebulex_adapters_cachex
 [nbx_redis]: https://github.com/cabol/nebulex_redis_adapter
+[nbx_cachex]: https://github.com/cabol/nebulex_adapters_cachex
 
 For example, if you want to use a built-in cache, add to your `mix.exs` file:
 
