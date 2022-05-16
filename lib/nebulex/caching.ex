@@ -549,6 +549,11 @@ if Code.ensure_loaded?(Decorator.Define) do
         opts = unquote(opts_var)
         match = unquote(match_var)
 
+        cache = case cache do
+          {m, f, args} -> apply(m, f, args)
+          cache -> cache
+        end
+
         unquote(action_block)
       end
     end
@@ -568,6 +573,11 @@ if Code.ensure_loaded?(Decorator.Define) do
 
         true ->
           quote do
+            cache = case cache do
+              {m, f, args} -> apply(m, f, args)
+              cache -> cache
+            end
+
             cache.__default_key_generator__().generate(
               unquote(ctx.module),
               unquote(ctx.name),
